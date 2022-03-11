@@ -5,20 +5,94 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Taskinator</title>
+        <title>Speed Quiz</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
 
     <body>
-
+        <!-- this will be view highscore and timer which stays on each screen -->
         <header>
-
+            <!-- this will toggle visibility of highscore list -->
+            <p class="view-score">View high scores</p>
+            <!-- the quiz timer will be appended to this element -->
+            <p id="countdown">Time: </p>
         </header>
 
         <main>
+            <section id="quiz-welcome">
+                <h1>Coding Quiz Challenge</h1>
+                <p>Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+                <button class="btn" id="start-quiz">Start Quiz</button>
+            </section>
 
+            <section id="quiz">
+                <div id="question-1">
+                    <p class="question">Commonly used data-types do NOT include:</p>
+                    <button class="answer wrong">1. strings</button>
+                    <button class="answer wrong">2. booleans</button>
+                    <button class="answer correct">3. alerts</button>
+                    <button class="answer wrong">4. numbers</button>
+                </div>
+
+                <div id="question-2">
+                    <p class="question">The condition in an if/else statement is enclosed with _______.</p>
+                    <button class="answer wrong">1. quotes</button>
+                    <button class="answer wrong">2. curly brackets</button>
+                    <button class="answer correct">3. parenthesis</button>
+                    <button class="answer wrong">4. square brackets</button>
+                </div>
+
+                <div id="question-3">
+                    <p class="question">Arrays in JavaScript can be used to store _______.</p>
+                    <button class="answer wrong">1. numbers and strings</button>
+                    <button class="answer wrong">2. other arrays</button>
+                    <button class="answer wrong">3. booleans</button>
+                    <button class="answer correct">4. all of the above</button>
+                </div>
+
+                <div id="question-4">
+                    <p class="question">String values must be enclosed within _______ when being assigned to variables</p>
+                    <button class="answer wrong">1. commas</button>
+                    <button class="answer wrong">2. curly brackets</button>
+                    <button class="answer correct">3. quotes</button>
+                    <button class="answer wrong">4. parenthesis</button>
+                </div>
+
+                <div id="question-5">
+                    <p class="question">A very useful tool used during development and debugging for printing content to the debugger is:</p>
+                    <button class="answer wrong">1. JavaScript</button>
+                    <button class="answer wrong">2. terminal/bash</button>
+                    <button class="answer wrong">3. for loops</button>
+                    <button class="answer correct">4. console.log</button>
+                </div>
+
+                <div id="result">
+
+                </div>
+            </section>
+
+            <section id="done">
+                <h1>All done!</h1>
+                <p>Your final score is </p>
+                <p>Enter initials: </p>
+                <input type="text" name="initials" placeholder="" />
+                <button class="btn" id="save-score" type="submit">Submit</button>
+            </section>
+
+            <section id="high-scores">
+                <h1>High Scores</h1>
+                <ol class="score">
+                </ol>
+                <button class="btn" id="go-back">Go back</button>
+                <button class="btn" id="clear-score">Clear high scores</button>
+            </section>
         </main>
-
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="./assets/js/script.js"></script>
     </body>
 </html>
