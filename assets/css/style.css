@@ -1,0 +1,45 @@
+:root {
+    --primary: #4E9EAD; 
+    --secondary: #254F51;
+}
+
+body {
+    font-family: Tahoma, Verdana, sans-serif;
+}
+
+#view-score {
+    color: var(--primary);
+}
+
+section {
+    text-align: center;
+}
+
+#quiz {
+    text-align: left;
+}
+
+h1, h2 {
+    font-weight: bold;
+}
+
+.btn {
+    background-color: var(--secondary);
+    color: white;
+    border-radius: 8px;
+}
+
+.answer {
+    display: block;
+    margin: 10px 0;
+}
+
+#result {
+    border-top: 2px solid grey;
+    color: grey;
+    font-style: italic;
+}
+
+#result h3 {
+    padding: 10px 0;
+}
