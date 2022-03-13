@@ -1,5 +1,5 @@
 // define time limit
-var maxTime = 75;
+var maxTime = 750;
 var penalty = 10;
 // set and display initial timer
 var timer = maxTime;
@@ -41,16 +41,27 @@ $("#start-quiz").click(function() {
     startTimer();
     var questionStart = 1;
     askQuestion(questionStart);
-})
+});
 
 var askQuestion = function(questionNum) {
-    // show new question and enable buttons
     var questionId = "#question-" + questionNum;
+    // resize buttons to width of longest answer
+    var maxWidth = 0;
+    $(questionId + " .answer").each(function() {
+        var width = $(this).width();
+        console.log($(this).width())
+        if (width > maxWidth) {
+            maxWidth = width;
+        }
+    })
+    // $(questionId + " .answer").width(maxWidth);
+    // show new question
     $(questionId).show();
-
+    
     $(questionId + " .answer").click(function() {
-        // if answer is right, display correct
+        // show result section for up to 3 sec at start of new question
         $("#result").show();
+        // if answer is right, display correct
         if ($(this).hasClass("correct")) {
             $("#result h2").text("Correct!");
         }
@@ -68,7 +79,7 @@ var askQuestion = function(questionNum) {
                 return
             }
         }
-        // hide answered question and disable buttons
+        // hide answered question
         $("#question-" + questionNum).hide();
         questionNum++;
         if (questionNum <= quizLength) {

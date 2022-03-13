@@ -26,12 +26,18 @@ h1, .question h2 {
 .btn {
     background-color: var(--secondary);
     color: white;
-    border-radius: 8px;
+    border-radius: 8px !important;
+}
+
+.btn:hover {
+    background-color: var(--primary);
+    color: white;
 }
 
 .answer {
     display: block;
     margin: 10px 0;
+    text-align: left;
 }
 
 #result {
