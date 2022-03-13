@@ -1,5 +1,6 @@
 // define time limit
-var maxTime = 60;
+var maxTime = 75;
+var penalty = 10;
 // set and display initial timer
 var timer = maxTime;
 $("#countdown").text("Time: " + timer);
@@ -12,10 +13,7 @@ var startTimer = function() {
     countdownTimer = setInterval(function() {
         // stop quiz if timer hits 0
         if (timer <= 0) {
-            console.log("timer stop")
-            clearInterval(countdownTimer);
-            $(".question").hide();
-            $("#done").show();
+            endQuiz();
         }
         // if quiz has begun, start decrementing timer
         else if ($(".question").is(":visible")) {
@@ -46,9 +44,31 @@ $("#start-quiz").click(function() {
 })
 
 var askQuestion = function(questionNum) {
-    $("#question-" + questionNum).show();
+    // show new question and enable buttons
+    var questionId = "#question-" + questionNum;
+    $(questionId).show();
 
-    $(".answer").click(function() { 
+    $(questionId + " .answer").click(function() {
+        // if answer is right, display correct
+        $("#result").show();
+        if ($(this).hasClass("correct")) {
+            $("#result h2").text("Correct!");
+        }
+        // if answer is wrong, display wrong and subtract 10 points
+        else if ($(this).hasClass("wrong")) {
+            $("#result h2").text("Wrong!");
+            if (timer > penalty) {
+                console.log("subtract")
+                timer = timer - penalty;
+            }
+            // if timer would go to or below 0, set to 0 and end quiz 
+            else {
+                timer = 0;
+                endQuiz();
+                return
+            }
+        }
+        // hide answered question and disable buttons
         $("#question-" + questionNum).hide();
         questionNum++;
         if (questionNum <= quizLength) {
@@ -56,10 +76,19 @@ var askQuestion = function(questionNum) {
         }
         // if all questions are answered, stop timer and show "done" screen
         else {
-            clearInterval(countdownTimer);
-            $("#done").show();
+            endQuiz();
         }
     });
+}
+
+var endQuiz = function() {
+    clearInterval(countdownTimer);
+    $("#countdown").text("Time: " + timer);
+    $(".question").hide();
+    $("#result").hide();
+    $("#done").show();
+    // display timer as final score
+    $("#final-score").text("Your final score is " + timer);
 }
 
 // on submit button click save score to local storage and show high score screen
