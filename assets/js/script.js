@@ -45,16 +45,7 @@ $("#start-quiz").click(function() {
 
 var askQuestion = function(questionNum) {
     var questionId = "#question-" + questionNum;
-    // resize buttons to width of longest answer
-    var maxWidth = 0;
-    $(questionId + " .answer").each(function() {
-        var width = $(this).width();
-        console.log($(this).width())
-        if (width > maxWidth) {
-            maxWidth = width;
-        }
-    })
-    // $(questionId + " .answer").width(maxWidth);
+    
     // show new question
     $(questionId).show();
     
