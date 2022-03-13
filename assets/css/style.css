@@ -43,3 +43,8 @@ h1, h2 {
 #result h3 {
     padding: 10px 0;
 }
+
+/* hide everything but header and quiz welcome when page loads */
+.question, #result, #done, #high-scores {
+    display: none;
+}
