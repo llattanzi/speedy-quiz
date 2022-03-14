@@ -10,6 +10,7 @@ A timed quiz for testing basic JavaScript knowledge which saves user scores.
 
 ## Website
 https://llattanzi.github.io/speedy-quiz/
+![Alt text](./quiz-screenshot.JPG?raw=true)
 
 ## Contribution
 Created by Lauren Lattanzi
