@@ -1,2 +1,15 @@
 # speedy-quiz
-A timed quiz on JavaScript fundamentals that stores high scores
+
+## Purpose
+A timed quiz for testing basic JavaScript knowledge which saves user scores.
+
+## Built with
+* HTML
+* CSS
+* JavaScript
+
+## Website
+https://llattanzi.github.io/speedy-quiz/
+
+## Contribution
+Created by Lauren Lattanzi
