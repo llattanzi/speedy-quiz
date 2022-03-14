@@ -50,6 +50,10 @@ h1, .question h2 {
     padding: 10px 0;
 }
 
+.score {
+    width: 40%;
+}
+
 /* hide everything but header and quiz welcome when page loads */
 .question, #result, #done, #high-scores {
     display: none;

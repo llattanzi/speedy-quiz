@@ -1,3 +1,5 @@
+// highscore variables
+var highscores = [];
 // define time limit
 var maxTime = 750;
 var penalty = 10;
@@ -7,6 +9,7 @@ $("#countdown").text("Time: " + timer);
 var countdownTimer = [];
 // get number of quiz questions
 var quizLength = $(".question").length;
+var quizComplete = false;
 
 // set countdown interval function
 var startTimer = function() {
@@ -21,16 +24,6 @@ var startTimer = function() {
             $("#countdown").text("Time: " + timer);
         }
     }, 1000);
-}
-
-// start over
-var reset = function() {
-    // set and display initial time limit
-    var timer = maxTime;
-    $("#countdown").text("Time: " + timer);
-    // display welcome screen and header
-    $("#quiz-welcome").show();
-    $("#header").show();
 }
 
 // start quiz button was clicked
@@ -48,7 +41,7 @@ var askQuestion = function(questionNum) {
     
     // show new question
     $(questionId).show();
-    
+    console.log(questionNum)
     $(questionId + " .answer").click(function() {
         // show result section for up to 3 sec at start of new question
         $("#result").show();
@@ -85,6 +78,7 @@ var askQuestion = function(questionNum) {
 
 var endQuiz = function() {
     clearInterval(countdownTimer);
+    quizComplete = true;
     $("#countdown").text("Time: " + timer);
     $(".question").hide();
     $("#result").hide();
@@ -97,12 +91,14 @@ var endQuiz = function() {
 // since quiz was completed, change visibilty settings so "Go Back" on highscore screen
 // will reset quiz and return to welcome screen 
 $("#save-score").click(function(){
-    // parent element must be hidden first so switch on welcome screen is not seen yet
-    $("#main-content").hide();
+    // save score to local storage with initials
+    var initials = $("input[name=initials]").val();
+    getHighscores();
+    highscores.push(initials + " - " + timer);
+    localStorage.setItem("highscoreList", JSON.stringify(highscores));
     $("#done").hide();
-    reset();
     $("#header").css("visibility", "hidden");
-    $("#high-scores").show();
+    highscoreScreen();
 })
 
 // "View high scores" in header is clicked
@@ -111,13 +107,44 @@ $("#view-score").on("click", function() {
     if (!$(".question").is(":visible")) {
         $("#header").css("visibility", "hidden");
         $("#main-content").hide();
-        $("#high-scores").show();
+        highscoreScreen();
     }
 })
 
 // show previous screen when go back is clicked or if quiz was completed, return to welcome screen and reset
 $("#go-back").click(function() {
+    if (quizComplete) {
+        location.reload();
+    }
+    else {
     $("#high-scores").hide();
     $("#main-content").show();
     $("#header").css("visibility", "visible");
+    }
+})
+
+// get highscore from local storage, if none, create highscores variable
+var getHighscores = function() {
+    if (localStorage.getItem('highscoreList')) {
+        highscores = JSON.parse(localStorage.getItem('highscoreList'));
+    }
+};
+
+// build highscores screen
+var highscoreScreen = function() {
+    $("#high-scores").show();
+    getHighscores();
+    var scoreList = $("ol.score");
+    $.each(highscores, function(i) {
+        $('<li/>')
+            .text(highscores[i])
+            .appendTo(scoreList);
+    })
+}
+
+// clear highscores button clicked
+$("#clear-score").click(function() {
+    localStorage.clear();
+    highscores = [];
+    $(".score li").remove();
 })
