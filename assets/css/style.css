@@ -54,6 +54,10 @@ h1, .question h2 {
     width: 40%;
 }
 
+.list-color {
+    background-color: #BADCDD;
+}
+
 /* hide everything but header and quiz welcome when page loads */
 .question, #result, #done, #high-scores {
     display: none;

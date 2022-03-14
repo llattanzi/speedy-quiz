@@ -1,7 +1,7 @@
 // highscore variables
 var highscores = [];
 // define time limit
-var maxTime = 750;
+var maxTime = 75;
 var penalty = 10;
 // set and display initial timer
 var timer = maxTime;
@@ -93,6 +93,9 @@ var endQuiz = function() {
 $("#save-score").click(function(){
     // save score to local storage with initials
     var initials = $("input[name=initials]").val();
+    if (!initials) {
+        initials = "N/A";
+    }
     getHighscores();
     highscores.push(initials + " - " + timer);
     localStorage.setItem("highscoreList", JSON.stringify(highscores));
